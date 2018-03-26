@@ -10,6 +10,8 @@ import Customer from "../components/CustomerList"
 import CustomerManager from "../components/CustomerManger"
 // 客户详情
 import Detail from "../components/Detail"
+// 添加客户
+import Add from "../components/AddCustomer"
 Vue.use(Router)
 
 const router = new Router({
@@ -52,6 +54,14 @@ const router = new Router({
       component:Detail,
       meta:{
         title:'客户详情'
+      }
+    },
+    {
+      path:'/add',
+      name:'Add',
+      component:Add,
+      meta:{
+        title:'添加客户'
       }
     }
 

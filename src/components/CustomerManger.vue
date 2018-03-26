@@ -17,35 +17,7 @@
             </el-tab-pane>
             <el-tab-pane label="逾期客户" name="second">
               <!--逾期客户-->
-              <div class="overduce">
-                <router-link :to="{path:'/'}">
-                  <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
-                    <i class="el-icon-arrow-right"></i>
-                  </div>
-                </router-link>
-                <router-link :to="{path:'/'}">
-                  <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
-                    <i class="el-icon-arrow-right"></i>
-                  </div>
-                </router-link>
-                <router-link :to="{path:'/'}">
-                  <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
-                    <i class="el-icon-arrow-right"></i>
-                  </div>
-                </router-link>
-                <router-link :to="{path:'/'}">
-                  <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
-                    <i class="el-icon-arrow-right"></i>
-                  </div>
-                </router-link>
+              <div class="overduce" v-for="(client,index) in overduceClient" :key="index">
                 <router-link :to="{path:'/'}">
                   <div class="item">
                     <span class="name">张珊珊珊</span>&nbsp;&nbsp;
@@ -101,10 +73,13 @@
 </template>
 
 <script>
+  import {timeOut,lack} from "../api/api"
   export default {
     data() {
       return {
         activeName: 'first',
+        overduceClient:[],
+        laceClient:[],
         formInline: {
           user: '',
           region: ''
@@ -113,11 +88,23 @@
     },
     methods: {
       handleClick(tab, event) {
-        console.log(tab, event);
+
       },
       onSubmit() {
-        console.log('submit!');
+
       }
+    },
+    mounted(){
+      // 逾期客户
+      timeOut(this).then(res=>{
+        this.overduceClient=res.data.data
+        console.log('逾期的',res)
+      })
+      // 缺件客户
+      lack(this).then(res=>{
+        this.laceClient=res.data.data
+        console.log('缺件的',res)
+      })
     }
   };
 </script>
@@ -141,7 +128,6 @@
         width 100%
         background #FF6600
         border none
-
     .overduce
       width 94%
       margin-left 3%

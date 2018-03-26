@@ -10,39 +10,11 @@
           </el-form-item>
         </el-form>
       </div>
-      <div class="list">
+      <div class="list" v-for="(item,index) in clientList" :key="index">
         <router-link :to="{path:'/'}">
           <div class="item">
-            <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-            <span>业务员：芒果</span>
-            <i class="el-icon-arrow-right"></i>
-          </div>
-        </router-link>
-        <router-link :to="{path:'/'}">
-          <div class="item">
-            <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-            <span>业务员：芒果</span>
-            <i class="el-icon-arrow-right"></i>
-          </div>
-        </router-link>
-        <router-link :to="{path:'/'}">
-          <div class="item">
-            <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-            <span>业务员：芒果</span>
-            <i class="el-icon-arrow-right"></i>
-          </div>
-        </router-link>
-        <router-link :to="{path:'/'}">
-          <div class="item">
-            <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-            <span>业务员：芒果</span>
-            <i class="el-icon-arrow-right"></i>
-          </div>
-        </router-link>
-        <router-link :to="{path:'/'}">
-          <div class="item">
-            <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-            <span>业务员：芒果</span>
+            <span class="name">{{item.name}}</span>&nbsp;&nbsp;
+            <span>业务员：{{item.salesman}}</span>
             <i class="el-icon-arrow-right"></i>
           </div>
         </router-link>
@@ -51,21 +23,28 @@
 </template>
 
 <script>
+  import {clientList} from "../api/api"
 export default {
     name: "Customer",
     data() {
       return {
-      formInline: {
+        formInline: {
         user: '',
         region: ''
-      }
+      },
+        clientList:[]
     }
     },
     methods: {
     onSubmit() {
       console.log('submit!');
     }
-  }
+  },
+    mounted(){
+      clientList(this).then(res=>{
+        this.clientList=res.data.data;
+      })
+   }
     }
 </script>
 
@@ -103,7 +82,7 @@ export default {
         span
           font-size 1.4rem
         .name
-          width 60px
+          width 75px
           display inline-block
         i
           float right

@@ -14,48 +14,60 @@
               <span>芒果</span>
             </div>
             <div class="item">
-              <span class="name">车牌号：</span>&nbsp;&nbsp;
-              <span>鄂AB1234</span>
+              <span class="name">性别：</span>&nbsp;&nbsp;
+              <span>男</span>
             </div>
             <div class="item">
-              <span class="name">发动机号：</span>&nbsp;&nbsp;
+              <span class="name">电话：</span>&nbsp;&nbsp;
               <span>XXXXXXXXXXX</span>
             </div>
             <div class="item">
-              <span class="name">车外表情况：</span>&nbsp;&nbsp;
-              <span>有少许刮蹭</span>
+              <span class="name">身份证号码：</span>&nbsp;&nbsp;
+              <span>xxxxxxxxxxxxxx</span>
             </div>
             <div class="item">
-              <span class="name">车内情况：</span>&nbsp;&nbsp;
-              <span>良好</span>
+              <span class="name">年龄：</span>&nbsp;&nbsp;
+              <span>33岁</span>
             </div>
             <div class="item">
-              <span class="name">年检：</span>&nbsp;&nbsp;
-              <span>2018已年检</span>
+              <span class="name">婚姻状况：</span>&nbsp;&nbsp;
+              <span>已婚</span>
             </div>
             <div class="item">
-              <span class="name">前后车牌一致：</span>&nbsp;&nbsp;
-              <span>鄂AB1234</span>
+              <span class="name">学历：</span>&nbsp;&nbsp;
+              <span>大专</span>
             </div>
             <div class="item">
-              <span class="name">违章：</span>&nbsp;&nbsp;
-              <span>5次</span>
+              <span class="name">户籍地址：</span>&nbsp;&nbsp;
+              <span>xxxxxxxxxxxxxxxxxxxxxxx</span>
             </div>
             <div class="item">
-              <span class="name">扣分：</span>&nbsp;&nbsp;
-              <span>8分</span>
+              <span class="name">现住地址：</span>&nbsp;&nbsp;
+              <span>xxxxxxxxxxxxxxxxxxxxxxxxx</span>
             </div>
             <div class="item">
-              <span class="name">违章罚分（元）：</span>&nbsp;&nbsp;
-              <span>2000</span>
+              <span class="name">住宅类型：</span>&nbsp;&nbsp;
+              <span>公寓</span>
             </div>
             <div class="item">
-              <span class="name">单次扣分12分（次）：</span>&nbsp;&nbsp;
-              <span>0</span>
+              <span class="name">工作单位：</span>&nbsp;&nbsp;
+              <span>xxxxxxxxxxxxxxxxxxx</span>
             </div>
             <div class="item">
-              <span class="name">车架号：</span>&nbsp;&nbsp;
+              <span class="name">所属行业：</span>&nbsp;&nbsp;
               <span>xxxxxxxxxxx</span>
+            </div>
+            <div class="item">
+              <span class="name">职位：</span>&nbsp;&nbsp;
+              <span>业务员</span>
+            </div>
+            <div class="item">
+              <span class="name">收入情况：</span>&nbsp;&nbsp;
+              <span>8000元</span>
+            </div>
+            <div class="item">
+              <span class="name">客户来源：</span>&nbsp;&nbsp;
+              <span>渠道</span>
             </div>
           </div>
         </el-tab-pane>
@@ -151,10 +163,10 @@
     },
     methods: {
       handleClick(tab, event) {
-        console.log(tab, event);
+
       },
       onSubmit() {
-        console.log('submit!');
+
       }
     }
   };

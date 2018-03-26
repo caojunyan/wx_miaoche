@@ -32,12 +32,16 @@ export default {
       display flex
       justify-content space-around
       div
-        width 33.3%
+        width 50%
         text-align: center
         color #9A9A9A
       .el-tabs__item.is-active
         color:#666666
 
 
+    .el-select .el-input.is-focus .el-input__inner
+      border-color #DCDFE6
+    .el-select .el-input__inner:focus
+      border-color #DCDFE6
 
 </style>
