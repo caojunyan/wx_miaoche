@@ -1,147 +1,150 @@
 <template>
   <div class="detail">
     <template>
-      <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+      <el-tabs v-model="activeName" type="card" >
         <el-tab-pane label="客户资料" name="first">
           <!--客户资料-->
-          <div class="customerdata">
+          <div class="customerdata" v-for="(customer,index) in detailInfo" :key="index">
             <div class="item">
               <span class="name">客户姓名：</span>&nbsp;&nbsp;
-              <span>刘承旭</span>
+              <span>{{customer.name}}</span>
             </div>
             <div class="item">
               <span class="name">业务员：</span>&nbsp;&nbsp;
-              <span>芒果</span>
+              <span>{{customer.salesman}}</span>
             </div>
             <div class="item">
               <span class="name">性别：</span>&nbsp;&nbsp;
-              <span>男</span>
+              <span>{{customer.sex}}</span>
             </div>
             <div class="item">
               <span class="name">电话：</span>&nbsp;&nbsp;
-              <span>XXXXXXXXXXX</span>
+              <span>{{customer.phone}}</span>
             </div>
             <div class="item">
               <span class="name">身份证号码：</span>&nbsp;&nbsp;
-              <span>xxxxxxxxxxxxxx</span>
+              <span>{{customer.idNumber}}</span>
             </div>
             <div class="item">
               <span class="name">年龄：</span>&nbsp;&nbsp;
-              <span>33岁</span>
+              <span>{{customer.age}}</span>
             </div>
             <div class="item">
               <span class="name">婚姻状况：</span>&nbsp;&nbsp;
-              <span>已婚</span>
+              <span>{{customer.marital}}</span>
             </div>
             <div class="item">
               <span class="name">学历：</span>&nbsp;&nbsp;
-              <span>大专</span>
+              <span>{{customer.education}}</span>
             </div>
             <div class="item">
               <span class="name">户籍地址：</span>&nbsp;&nbsp;
-              <span>xxxxxxxxxxxxxxxxxxxxxxx</span>
+              <span>{{customer.registrationAdd}}</span>
             </div>
             <div class="item">
               <span class="name">现住地址：</span>&nbsp;&nbsp;
-              <span>xxxxxxxxxxxxxxxxxxxxxxxxx</span>
+              <span>{{customer.address}}</span>
             </div>
             <div class="item">
               <span class="name">住宅类型：</span>&nbsp;&nbsp;
-              <span>公寓</span>
+              <span>{{customer.housingType}}</span>
             </div>
             <div class="item">
               <span class="name">工作单位：</span>&nbsp;&nbsp;
-              <span>xxxxxxxxxxxxxxxxxxx</span>
+              <span>{{customer.company}}</span>
             </div>
             <div class="item">
               <span class="name">所属行业：</span>&nbsp;&nbsp;
-              <span>xxxxxxxxxxx</span>
+              <span>{{customer.comType}}</span>
             </div>
             <div class="item">
               <span class="name">职位：</span>&nbsp;&nbsp;
-              <span>业务员</span>
+              <span>{{customer.position}}</span>
             </div>
             <div class="item">
               <span class="name">收入情况：</span>&nbsp;&nbsp;
-              <span>8000元</span>
+              <span>{{customer.monthly}}</span>
             </div>
             <div class="item">
               <span class="name">客户来源：</span>&nbsp;&nbsp;
-              <span>渠道</span>
+              <span>{{customer.source}}</span>
             </div>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="车辆信息" name="second">
-          <!--车辆资料-->
-          <div class="car">
-            <div class="item">
-              <span class="name">评估价（元）：</span>&nbsp;&nbsp;
-              <span>12万元</span>
-            </div>
-            <div class="item">
-              <span class="name">公里数（km）：</span>&nbsp;&nbsp;
-              <span>30万</span>
-            </div>
-            <div class="item">
-              <span class="name">车牌号：</span>&nbsp;&nbsp;
-              <span>鄂AB1234</span>
-            </div>
-            <div class="item">
-              <span class="name">发动机号：</span>&nbsp;&nbsp;
-              <span>XXXXXXXXXXX</span>
-            </div>
-            <div class="item">
-              <span class="name">车外表情况：</span>&nbsp;&nbsp;
-              <span>有少许刮蹭</span>
-            </div>
-            <div class="item">
-              <span class="name">车内情况：</span>&nbsp;&nbsp;
-              <span>良好</span>
-            </div>
-            <div class="item">
-              <span class="name">年检：</span>&nbsp;&nbsp;
-              <span>2018已年检</span>
-            </div>
-            <div class="item">
-              <span class="name">前后车牌一致：</span>&nbsp;&nbsp;
-              <span>鄂AB1234</span>
-            </div>
-            <div class="item">
-              <span class="name">违章：</span>&nbsp;&nbsp;
-              <span>5次</span>
-            </div>
-            <div class="item">
-              <span class="name">扣分：</span>&nbsp;&nbsp;
-              <span>8分</span>
-            </div>
-            <div class="item">
-              <span class="name">违章罚分（元）：</span>&nbsp;&nbsp;
-              <span>2000</span>
-            </div>
-            <div class="item">
-              <span class="name">单次扣分12分（次）：</span>&nbsp;&nbsp;
-              <span>0</span>
-            </div>
-            <div class="item">
-              <span class="name">车架号：</span>&nbsp;&nbsp;
-              <span>xxxxxxxxxxx</span>
-            </div>
-          </div>
+        <el-tab-pane label="车辆信息" name="second" >
+          <el-tabs type="border-card" class="car-detail" v-show="showFlag">
+            <el-tab-pane v-bind:label="'车辆'+(carIndex+1)" v-for="(car,carIndex) in carInfo" :key="carIndex">
+              <div class="car" >
+                <div class="item">
+                  <span class="name">评估价（元）：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].price}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">公里数（km）：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].mileage}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">车牌号：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].plate}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">发动机号：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].engineNum}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">车外表情况：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].carStatu}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">车内情况：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].appearance}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">年检：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].annualInspection}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">前后车牌一致：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].brand}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">违章：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].illegalNum}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">扣分：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].illegalSore}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">违章罚分（元）：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].illegalPrice}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">单次扣分12分（次）：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].illegal}}</span>
+                </div>
+                <div class="item">
+                  <span class="name">车架号：</span>&nbsp;&nbsp;
+                  <span>{{carInfo[carIndex].frameNum}}</span>
+                </div>
+              </div>
+            </el-tab-pane>
+          </el-tabs>
         </el-tab-pane>
         <el-tab-pane label="证件有效期" name="third">
           <!--证件有效期-->
           <div class="certificate">
             <div class="item">
-              <span class="name">客户姓名：</span>&nbsp;&nbsp;
-              <span>刘程序</span>
+              <span class="name">身份证有效期：</span>&nbsp;&nbsp;
+              <span>{{idEffTime}}</span>
             </div>
             <div class="item">
-              <span class="name">证件号码：</span>&nbsp;&nbsp;
-              <span>xxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+              <span class="name">驾驶证有效期：</span>&nbsp;&nbsp;
+              <span>{{drivingEffTime}}</span>
             </div>
             <div class="item">
-              <span class="name">证件有效期：</span>&nbsp;&nbsp;
-              <span>2023年</span>
+              <span class="name">行驶证有效期：</span>&nbsp;&nbsp;
+              <span>{{insuranceEffTime}}</span>
             </div>
           </div>
         </el-tab-pane>
@@ -151,23 +154,48 @@
 </template>
 
 <script>
+  import {selectCustomer,selectCar,getCredit} from "../api/api"
   export default {
     data() {
       return {
+        detailInfo:[],
+        carInfo:[],
+        drivingEffTime:'',
+        idEffTime:'',
+        insuranceEffTime:'',
+        showFlag:true,
         activeName: 'first',
         formInline: {
           user: '',
-          region: ''
+          region: '',
         }
       };
     },
     methods: {
-      handleClick(tab, event) {
-
-      },
       onSubmit() {
 
       }
+    },
+    mounted(){
+      selectCustomer(this,this.$route.query.cusmoter).then(data=>{
+        for(var item in data){
+          if(data[item].id==this.$route.query.cusmoter){
+              this.detailInfo.push(data[item])
+          }
+        }
+      })
+      selectCar(this,this.$route.query.cusmoter).then(data=>{
+          this.carInfo=data.data.data
+          if(this.carInfo==0){
+            this.showFlag=false
+          }
+      })
+      getCredit(this,this.$route.query.cusmoter).then(data=>{
+        this.drivingEffTime=data.data.data[0].drivingEffTime
+        this.idEffTime=data.data.data[0].idEffTime
+        this.insuranceEffTime=data.data.data[0].insuranceEffTime
+      })
+
     }
   };
 </script>
@@ -202,26 +230,26 @@
             height 100%
             line-height 40px
 
-      .car
-        width 94%
-        margin-left 3%
-        .item
-          width 100%
-          height 40px
-          border-bottom 1px solid #DADADA
-          line-height 40px
-          span
-            font-size 1.4rem
-          .name
-            min-width  80px
-            display inline-block
-          i
-            float right
-            display inline-block
-            height 100%
+      .car-detail
+        .car
+          width 94%
+          margin-left 3%
+          .item
+            width 100%
+            height 40px
+            border-bottom 1px solid #DADADA
             line-height 40px
-
-      .certificate
+            span
+              font-size 1.4rem
+            .name
+              min-width  80px
+              display inline-block
+            i
+              float right
+              display inline-block
+              height 100%
+              line-height 40px
+  .certificate
         width 94%
         margin-left 3%
         .item

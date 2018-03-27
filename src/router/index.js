@@ -12,6 +12,11 @@ import CustomerManager from "../components/CustomerManger"
 import Detail from "../components/Detail"
 // 添加客户
 import Add from "../components/AddCustomer"
+// 车辆检查
+import Check from "../components/Check"
+
+// test
+import test from "../components/test"
 Vue.use(Router)
 
 const router = new Router({
@@ -29,7 +34,7 @@ const router = new Router({
       name:'Query',
       component:Query,
       meta:{
-        title:'查询配置'
+        title:'添加车辆'
       }
     },
     {
@@ -62,6 +67,22 @@ const router = new Router({
       component:Add,
       meta:{
         title:'添加客户'
+      }
+    },
+    {
+      path:'/check',
+      name:'check',
+      component:Check,
+      meta:{
+        title:'车辆检查'
+      }
+    },
+    {
+      path:'/test',
+      name:'test',
+      component:test,
+      meta:{
+        title:'车辆检查'
       }
     }
 

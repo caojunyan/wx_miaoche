@@ -23,10 +23,10 @@
                   <el-input type="" v-model="customerForm.name" auto-complete="off" placeholder="客户姓名"></el-input>
                 </el-form-item>
                 <el-form-item  prop="salesman">
-                  <el-select v-model="customerForm.group" placeholder="请选择组别">
+                  <el-select v-model="customerForm.group" placeholder="请选择组别" class="saleSelect">
                     <el-option v-for="(group,index) in groups" :label="group" :value="group" :key="index"></el-option>
                   </el-select>
-                  <el-select v-model="customerForm.salesman" placeholder="请选择业务员">
+                  <el-select v-model="customerForm.salesman" placeholder="请选择业务员" class="saleSelect">
                     <el-option v-for="(salesman,index) in staffs" :label="salesman" :value="salesman" :key="index"></el-option>
                   </el-select>
                 </el-form-item>
@@ -516,4 +516,6 @@
       .el-select
         width 100%
         outline none
+        &.saleSelect
+          width 47%
 </style>

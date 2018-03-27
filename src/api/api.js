@@ -38,6 +38,32 @@ export const clientList=(_this)=>{
     return res
   })
 }
+
+// 客户信息
+export const selectCustomer=(_this,params)=>{
+  return axios.get('/customers',params).then(res=>{
+    return res.data.data
+  })
+}
+
+// 车辆信息
+export const selectCar=(_this,id)=>{
+  return axios.get('/customers/'+id+"/cars").then(res=>{
+    return res
+  })
+}
+// 根据id查询证件信息
+export const getCredit=(_this,id)=>{
+  return axios.get('/customers/'+id+'/credentials').then(res=>{
+    return res
+})
+}
+// 车辆检查
+export const checkCar=(_this)=>{
+  return axios.get('/pendings?include=customer').then(res=>{
+    return res
+  })
+}
 // 逾期客户
 export const timeOut=(_this)=>{
   return axios.get('/repaymentOrders?include=overdue').then(res=>{

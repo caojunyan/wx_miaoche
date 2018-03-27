@@ -43,5 +43,9 @@ export default {
       border-color #DCDFE6
     .el-select .el-input__inner:focus
       border-color #DCDFE6
+    .el-tabs__item:hover
+      color #FF6600
+    .el-tabs__item.is-active
+      color #ff6600
 
 </style>

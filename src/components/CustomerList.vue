@@ -11,19 +11,17 @@
         </el-form>
       </div>
       <div class="list" v-for="(item,index) in clientList" :key="index">
-        <router-link :to="{path:'/'}">
-          <div class="item">
-            <span class="name">{{item.name}}</span>&nbsp;&nbsp;
+        <div class="item" @click="toDetail(item.id)">
+            <span class="name">{{item.name}}  </span>&nbsp;&nbsp;
             <span>业务员：{{item.salesman}}</span>
             <i class="el-icon-arrow-right"></i>
           </div>
-        </router-link>
       </div>
     </div>
 </template>
 
 <script>
-  import {clientList} from "../api/api"
+import {clientList} from "../api/api"
 export default {
     name: "Customer",
     data() {
@@ -32,17 +30,27 @@ export default {
         user: '',
         region: ''
       },
-        clientList:[]
+        clientList:[],
+        id:''
     }
     },
     methods: {
     onSubmit() {
       console.log('submit!');
+    },
+    toDetail(index){
+      this.$router.push({
+        name: "Detail",
+        query: {
+          cusmoter: index
+        }
+      })
     }
   },
     mounted(){
       clientList(this).then(res=>{
         this.clientList=res.data.data;
+        console.log(res)
       })
    }
     }
@@ -72,22 +80,20 @@ export default {
   .list
     width 94%
     margin-left 3%
-    .router-link-active
-      color #666666
-      .item
-        width 100%
-        height 40px
-        border-bottom 1px solid #DADADA
+    .item
+      width 100%
+      height 40px
+      border-bottom 1px solid #DADADA
+      line-height 40px
+      span
+        font-size 1.4rem
+      .name
+        width 75px
+        display inline-block
+      i
+        float right
+        display inline-block
+        height 100%
         line-height 40px
-        span
-          font-size 1.4rem
-        .name
-          width 75px
-          display inline-block
-        i
-          float right
-          display inline-block
-          height 100%
-          line-height 40px
 
 </style>

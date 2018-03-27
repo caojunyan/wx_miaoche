@@ -56,7 +56,7 @@ export default {
              }else if(depart==="业务B组"){
                this.$router.push({path:'/add'})
              }else if(depart==="技术部"){
-               this.$router.push({path:'/query'})
+               this.$router.push({path:'/check'})
              }else if(depart==="资产管理部门"){
                this.$router.push({path:'/customerManager'})
              }else{
