@@ -1,75 +1,76 @@
 <template>
   <div>
-    <ul>
-      <li v-for="item in articles">
-        <h2>{{item.title}}</h2>
-        <img :src="item.images" alt="">
-      </li>
-    </ul>
+  <!--  <v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite">-->
+    <v-scroll  :on-infinite="onInfinite">
+      <ul>
+        <li v-for="(item,index) in listdata" >{{item.name}}</li>
+        <li v-for="(item,index) in listdata" >{{item.name}}</li>
+        <li v-for="(item,index) in listdata" >{{item.name}}</li>
+
+        <li v-for="(item,index) in downdata" >{{item.name}}</li>
+        <li v-for="(item,index) in downdata" >{{item.name}}</li>
+        <li v-for="(item,index) in downdata" >{{item.name}}</li>
+      </ul>
+    </v-scroll>
   </div>
 </template>
 <script>
-  import axios from 'axios';
+  import Scroll from './scroll';
+  import axios from 'axios'
   export default{
-    data(){
+    data () {
       return {
-        articles : []
+        counter : 1, //默认已经显示出15条数据 count等于一是让从16条开始加载
+        num : 15,  // 一次显示多少条
+        pageStart : 0, // 开始页数
+        pageEnd : 0, // 结束页数
+        listdata: [], // 下拉更新数据存放数组
+        downdata: []  // 上拉更多的数据存放数组
       }
     },
-    mounted(){
-      // 缓存指针
-      let _this = this;
-      // 设置一个开关来避免重负请求数据
-      let sw = true;
-      // 此处使用node做了代理
-      axios.get('http://localhost:3000/proxy?url=http://news-at.zhihu.com/api/4/news/latest')
-        .then(function(response){
-          // console.log(JSON.parse(response.data).stories);
-          // 将得到的数据放到vue中的data
-          _this.articles = JSON.parse(response.data).stories;
-        })
-        .catch(function(error){
-          console.log(error);
+    mounted : function(){
+      this.getList();
+    },
+    methods: {
+      getList(){
+        let vm = this;
+       axios.get('https://api.github.com/repos/typecho-fans/plugins/contents/').then((response) => {
+          vm.listdata = response.data.slice(0,15);
+        }, (response) => {
+          console.log('error');
         });
+      },
+    /*  onRefresh(done) {
+        this.getList();
+        done() // call done
 
-      // 注册scroll事件并监听
-      window.addEventListener('scroll',function(){
-        // console.log(document.documentElement.clientHeight+'-----------'+window.innerHeight); // 可视区域高度
-        // console.log(document.body.scrollTop); // 滚动高度
-        // console.log(document.body.offsetHeight); // 文档高度
-        // 判断是否滚动到底部
-        if(document.body.scrollTop + window.innerHeight >= document.body.offsetHeight) {
-          // console.log(sw);
-          // 如果开关打开则加载数据
-          if(sw==true){
-            // 将开关关闭
-            sw = false;
-            axios.get('http://localhost:3000/proxy?url=http://news.at.zhihu.com/api/4/news/before/20170608')
-              .then(function(response){
-                console.log(JSON.parse(response.data));
-                // 将新获取的数据push到vue中的data，就会反应到视图中了
-                JSON.parse(response.data).stories.forEach(function(val,index){
-                  _this.articles.push(val);
-                  // console.log(val);
-                });
-                // 数据更新完毕，将开关打开
-                sw = true;
-              })
-              .catch(function(error){
-                console.log(error);
-              });
+      },*/
+      onInfinite(done) {
+        let vm = this;
+        axios.get('https://api.github.com/repos/typecho-fans/plugins/contents/').then((response) => {
+          vm.counter++;
+          vm.pageEnd = vm.num * vm.counter;
+          vm.pageStart = vm.pageEnd - vm.num;
+          let arr = response.data;
+          let i = vm.pageStart;
+          let end = vm.pageEnd;
+          for(; i<end; i++){
+            let obj ={};
+            obj["name"] = arr[i].name;
+            vm.downdata.push(obj);
+            if((i + 1) >= response.data.length){
+              this.$el.querySelector('.load-more').style.display = 'none';
+              return;
+            }
           }
-        }
-      });
+          done() // call done
+        }, (response) => {
+          console.log('error');
+        });
+      }
+    },
+    components : {
+      'v-scroll': Scroll
     }
   }
 </script>
-<style>
-  *{
-    margin:0;
-    padding:0;
-  }
-  li{
-    list-style:none;
-  }
-</style>

@@ -44,6 +44,7 @@ export default {
   methods: {
     // 登陆
     submitForm(formName) {
+      console.log('登录')
       // 获取用户信息
       getAdmin(this,this.user).then(data => {
         if (data) {

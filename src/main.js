@@ -6,6 +6,12 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import axios from 'axios'
+Vue.use(axios);
+import { InfiniteScroll } from 'mint-ui';
+import 'mint-ui/lib/style.css'
+Vue.use(InfiniteScroll);
+
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 /* eslint-disable no-new */

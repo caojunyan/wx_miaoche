@@ -31,14 +31,13 @@ export default {
       width 100%
       display flex
       justify-content space-around
+      overflow auto
       div
         width 50%
         text-align: center
         color #9A9A9A
       .el-tabs__item.is-active
         color:#666666
-
-
     .el-select .el-input.is-focus .el-input__inner
       border-color #DCDFE6
     .el-select .el-input__inner:focus
@@ -47,5 +46,7 @@ export default {
       color #FF6600
     .el-tabs__item.is-active
       color #ff6600
+    scrollbar[orient="vertical"]
+      min-width: 15px !important
 
 </style>

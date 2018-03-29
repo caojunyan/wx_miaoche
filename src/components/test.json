@@ -1,0 +1,55 @@
+{
+  "status": 0,
+  "message": "success",
+  "ticketNoItems": [
+    {
+      "name": "ZHANG/SAN",
+      "salesman": "132-124312343"
+    },
+    {
+      "name": "LI/SI",
+      "salesman": "222-124312343"
+    },
+    {
+      "name": "WANG/WU",
+      "salesman": "333124312343"
+    },
+    {
+      "name": "WANG/WUl",
+      "salesman": "333124312343"
+    },
+    {
+      "name": "WANG/WUk",
+      "salesman": "333124312343"
+    },
+    {
+      "name": "WANG/Wj",
+      "salesman": "333124312343"
+    },
+    {
+      "name": "ZHANG/SAN",
+      "salesman": "132-124312343"
+    },
+    {
+      "name": "LI/SI",
+      "salesman": "222-124312343"
+    },
+    {
+      "name": "WANG/WU",
+      "salesman": "333124312343"
+    },
+    {
+      "name": "WANG/WUl",
+      "salesman": "333124312343"
+    },
+    {
+      "name": "WANG/WUk",
+      "salesman": "333124312343"
+    },
+    {
+      "name": "WANG/Wj",
+      "salesman": "333124312343"
+    }
+
+  ]
+}

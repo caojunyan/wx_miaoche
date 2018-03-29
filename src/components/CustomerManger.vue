@@ -20,8 +20,9 @@
               <div class="overduce" v-for="(client,index) in overduceClient" :key="index">
                 <router-link :to="{path:'/'}">
                   <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
+                   <!-- <span class="name">张珊珊珊</span>&nbsp;&nbsp;-->
+                    <span>业务员：{{client.salesman}}</span>
+                    <span class="amount">逾期金额：{{client.amount}}</span>
                     <i class="el-icon-arrow-right"></i>
                   </div>
                 </router-link>
@@ -29,39 +30,12 @@
             </el-tab-pane>
             <el-tab-pane label="缺件客户" name="third">
               <!--缺件客户-->
-              <div class="lack">
+              <div class="lack" v-for="(client,index) in laceClient">
                 <router-link :to="{path:'/'}">
                   <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
-                    <i class="el-icon-arrow-right"></i>
-                  </div>
-                </router-link>
-                <router-link :to="{path:'/'}">
-                  <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
-                    <i class="el-icon-arrow-right"></i>
-                  </div>
-                </router-link>
-                <router-link :to="{path:'/'}">
-                  <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
-                    <i class="el-icon-arrow-right"></i>
-                  </div>
-                </router-link>
-                <router-link :to="{path:'/'}">
-                  <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
-                    <i class="el-icon-arrow-right"></i>
-                  </div>
-                </router-link>
-                <router-link :to="{path:'/'}">
-                  <div class="item">
-                    <span class="name">张珊珊珊</span>&nbsp;&nbsp;
-                    <span>业务员：芒果</span>
+                    <!-- <span class="name">张珊珊珊</span>&nbsp;&nbsp;-->
+                    <span>业务员：{{client.salesman}}</span>
+                    <span class="amount">缺件金额：{{client.amount}}</span>
                     <i class="el-icon-arrow-right"></i>
                   </div>
                 </router-link>
@@ -140,6 +114,8 @@
           line-height 40px
           span
             font-size 1.4rem
+            min-width 130px
+            display inline-block
           .name
             width 60px
             display inline-block
@@ -161,6 +137,8 @@
           line-height 40px
           span
             font-size 1.4rem
+            min-width 130px
+            display inline-block
           .name
             width 60px
             display inline-block

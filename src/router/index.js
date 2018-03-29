@@ -16,7 +16,7 @@ import Add from "../components/AddCustomer"
 import Check from "../components/Check"
 
 // test
-import test from "../components/test"
+import test from "../components/test/test.vue"
 Vue.use(Router)
 
 const router = new Router({
@@ -82,7 +82,7 @@ const router = new Router({
       name:'test',
       component:test,
       meta:{
-        title:'车辆检查'
+        title:'test'
       }
     }
 
