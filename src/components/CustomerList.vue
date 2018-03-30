@@ -8,30 +8,19 @@
           <el-input v-model="formInline.user" placeholder="用户名" style="width: 100%"></el-input>
         </el-form-item>
         <el-form-item class="button">
-          <el-button type="primary" @click="">查询</el-button>
+          <el-button type="primary" @click="submit">查询</el-button>
         </el-form-item>
       </el-form>
     </div>
      <div class="list" v-for="(item,index) in clientList" :key="index"   >
-      <!-- <div class="item" @click="toDetail(item.id)">
-         <span class="name">{{item.name}}</span>
-         <span>业务员：{{item.salesman}}</span>
-         <i class="el-icon-arrow-right"></i>
-       </div>-->
-       <ul class="item" @click="toDetail(item.id)">
-         <li>
+       <ul>
+         <li class="item" @click="toDetail(item.id)">
            <span class="name">{{item.name}}</span>
            <span>业务员：{{item.salesman}}</span>
            <i class="el-icon-arrow-right"></i>
          </li>
        </ul>
      </div>
-    <!--<ul
-      v-infinite-scroll="loadMore"
-      infinite-scroll-disabled="loading"
-      infinite-scroll-distance="10">
-      <li v-for="item in list" class="test">{{ item }}</li>
-    </ul>-->
     <div class="loading">
       <span v-show="loading"  >加载更多。。。</span>
     </div>
@@ -39,7 +28,7 @@
 </template>
 
 <script>
-  import {clientList} from "../api/api"
+  import {clientList,getByName} from "../api/api"
   import axios from 'axios'
   export default {
     name: "test",
@@ -47,7 +36,6 @@
       return {
         formInline: {
           user: '',
-          region: ''
         },
         clientList: [],
         rolling:false,
@@ -64,8 +52,11 @@
       }
     },
     methods: {
-      onSubmit() {
-        console.log('submit!');
+      submit() {
+        getByName(this,this.formInline.user).then(res=>{
+          console.log(res)
+          console.log(this.formInline.user)
+        })
       },
       toDetail(index) {
         this.$router.push({
@@ -133,15 +124,15 @@
             border:none
             width 100%
     .test
-      height 40px
+      height 50px
     .list
       width 94%
       margin-left 3%
       .item
         width 100%
-        height 40px
+        height 50px
         border-bottom 1px solid #DADADA
-        line-height 40px
+        line-height 50px
         span
           font-size 1.4rem
         .name

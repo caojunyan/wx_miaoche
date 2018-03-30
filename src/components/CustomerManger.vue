@@ -18,27 +18,23 @@
             <el-tab-pane label="逾期客户" name="second">
               <!--逾期客户-->
               <div class="overduce" v-for="(client,index) in overduceClient" :key="index">
-                <router-link :to="{path:'/'}">
-                  <div class="item">
+                  <div class="item" @click="toDetail(client.id)">
                    <!-- <span class="name">张珊珊珊</span>&nbsp;&nbsp;-->
                     <span>业务员：{{client.salesman}}</span>
                     <span class="amount">逾期金额：{{client.amount}}</span>
                     <i class="el-icon-arrow-right"></i>
                   </div>
-                </router-link>
               </div>
             </el-tab-pane>
             <el-tab-pane label="缺件客户" name="third">
               <!--缺件客户-->
               <div class="lack" v-for="(client,index) in laceClient">
-                <router-link :to="{path:'/'}">
-                  <div class="item">
+                  <div class="item" @click="toDetail(client.id)">
                     <!-- <span class="name">张珊珊珊</span>&nbsp;&nbsp;-->
                     <span>业务员：{{client.salesman}}</span>
                     <span class="amount">缺件金额：{{client.amount}}</span>
                     <i class="el-icon-arrow-right"></i>
                   </div>
-                </router-link>
               </div>
             </el-tab-pane>
           </el-tabs>
@@ -66,7 +62,15 @@
       },
       onSubmit() {
 
-      }
+      },
+      toDetail(index) {
+        this.$router.push({
+          name: "Detail",
+          query: {
+            cusmoter: index
+          }
+        })
+      },
     },
     mounted(){
       // 逾期客户
@@ -105,47 +109,43 @@
     .overduce
       width 94%
       margin-left 3%
-      .router-link-active
-        color #666666
-        .item
-          width 100%
-          height 40px
-          border-bottom 1px solid #DADADA
+      .item
+        width 100%
+        height 40px
+        border-bottom 1px solid #DADADA
+        line-height 40px
+        span
+          font-size 1.4rem
+          min-width 130px
+          display inline-block
+        .name
+          width 60px
+          display inline-block
+        i
+          float right
+          display inline-block
+          height 100%
           line-height 40px
-          span
-            font-size 1.4rem
-            min-width 130px
-            display inline-block
-          .name
-            width 60px
-            display inline-block
-          i
-            float right
-            display inline-block
-            height 100%
-            line-height 40px
 
     .lack
       width 94%
       margin-left 3%
-      .router-link-active
-        color #666666
-        .item
-          width 100%
-          height 40px
-          border-bottom 1px solid #DADADA
+      .item
+        width 100%
+        height 40px
+        border-bottom 1px solid #DADADA
+        line-height 40px
+        span
+          font-size 1.4rem
+          min-width 130px
+          display inline-block
+        .name
+          width 60px
+          display inline-block
+        i
+          float right
+          display inline-block
+          height 100%
           line-height 40px
-          span
-            font-size 1.4rem
-            min-width 130px
-            display inline-block
-          .name
-            width 60px
-            display inline-block
-          i
-            float right
-            display inline-block
-            height 100%
-            line-height 40px
 
 </style>

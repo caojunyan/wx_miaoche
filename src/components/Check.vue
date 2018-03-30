@@ -17,14 +17,12 @@
           </el-tab-pane>
           <el-tab-pane label="车辆检查" name="second">
             <!--车辆检查-->
-              <div class="checkbus">
-                <router-link :to="{path:'/'}">
-                  <div class="item" v-for="(item,index) in carList" :key="index">
+              <div class="checkbus" v-for="(item,index) in carList" :key="index" >
+                  <div class="item"  @click="toDetail(item.id)">
                     <span class="name">{{item}}</span>&nbsp;&nbsp;
                     <span>业务员：{{item}}</span>
                     <i class="el-icon-arrow-right"></i>
                   </div>
-                </router-link>
               </div>
           </el-tab-pane>
         </el-tabs>
@@ -49,7 +47,15 @@ export default {
         methods: {
             onsubmit(){
 
-            }
+            },
+          toDetail(index) {
+            this.$router.push({
+              name: "Detail",
+              query: {
+                cusmoter: index
+              }
+            })
+          },
         },
         mounted(){
           checkCar(this).then(res=>{
@@ -77,22 +83,20 @@ export default {
     .checkbus
       width 94%
       margin-left 3%
-      .router-link-active
-        color #666666
-        .item
-          width 100%
-          height 40px
-          border-bottom 1px solid #DADADA
+      .item
+        width 100%
+        height 40px
+        border-bottom 1px solid #DADADA
+        line-height 40px
+        span
+          font-size 1.4rem
+        .name
+          width 60px
+          display inline-block
+        i
+          float right
+          display inline-block
+          height 100%
           line-height 40px
-          span
-            font-size 1.4rem
-          .name
-            width 60px
-            display inline-block
-          i
-            float right
-            display inline-block
-            height 100%
-            line-height 40px
 
 </style>

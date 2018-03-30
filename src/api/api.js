@@ -58,6 +58,13 @@ export const getCredit=(_this,id)=>{
     return res
 })
 }
+// 按客户名查询
+export const getByName=(_this,name)=>{
+  return axios.post('/customers/byNames',name).then(res=>{
+    return res
+  })
+}
+
 // 车辆检查
 export const checkCar=(_this)=>{
   return axios.get('/pendings?include=customer').then(res=>{
